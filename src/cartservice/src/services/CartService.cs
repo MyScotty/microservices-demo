@@ -31,10 +31,10 @@ namespace cartservice.services
             _cartStore = cartStore;
         }
 
-        public async override Task<Empty> AddItem(AddItemRequest request, ServerCallContext context)
+        public override Task<Empty> AddItem(AddItemRequest request, ServerCallContext context)
         {
-            await _cartStore.AddItemAsync(request.UserId, request.Item.ProductId, request.Item.Quantity);
-            return Empty;
+            // DEMO ONLY: Simulate cart service unavailable
+            throw new RpcException(new Status(StatusCode.Unavailable, "Cart service is currently unavailable"));
         }
 
         public override Task<Cart> GetCart(GetCartRequest request, ServerCallContext context)
